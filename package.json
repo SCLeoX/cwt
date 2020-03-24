@@ -2,7 +2,7 @@
 	"name": "cwt",
 	"displayName": "cwt",
 	"description": "",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"engines": {
 		"vscode": "^1.43.0"
 	},
@@ -13,7 +13,7 @@
 		"*"
 	],
 	"repository": {
-  	"type" : "git",
+		"type": "git",
 		"url": "https://github.com/SCLeoX/cwt.git"
 	},
 	"publisher": "RTepis",
@@ -57,7 +57,15 @@
 				},
 				"cwt.repetitionDetection.ignoreList": {
 					"type": "array",
-					"default": [ "了", "的", "地", "得", "是", "和", "与" ],
+					"default": [
+						"了",
+						"的",
+						"地",
+						"得",
+						"是",
+						"和",
+						"与"
+					],
 					"items": {
 						"type": "string"
 					},
@@ -68,9 +76,20 @@
 					"markdownDescription": "cwt 在做重复检测时，会高亮一些词语。这个高亮和 Visual Studio Code 的会叠在一起导致看不清楚。因此 cwt 会在进入启用重复检测的文档时禁用 Visual Studio Code 的高亮，并在离开时恢复初始值。接下来的这些 `cwt.repetitionDetection.override.*` 的配置项都是控制这个行为的。如果你不希望 cwd 修改你的配置文件，你可以使用命令 `CWT: Restore and Disable Configuration Overrides`。该命令会自动调整相应的配置项并复原你的原始设置。"
 				},
 				"cwt.repetitionDetection.override.editorOccurrencesHighlight.originalValue": {
-					"type": [ "null", "boolean" ],
-					"enum": [ true, false, null ],
-					"enumDescriptions": [ "", "", "这是默认选项，用来告诉 cwt 需要进行初始化。设置为本项后 cwt 会读取当前值，并覆盖本选项。" ],
+					"type": [
+						"null",
+						"boolean"
+					],
+					"enum": [
+						true,
+						false,
+						null
+					],
+					"enumDescriptions": [
+						"",
+						"",
+						"这是默认选项，用来告诉 cwt 需要进行初始化。设置为本项后 cwt 会读取当前值，并覆盖本选项。"
+					],
 					"default": null,
 					"markdownDescription": "**原始 editor.occurrencesHighlight 值**：因为 cwt 在启用重复检测时需要覆写 Visual Studio Code 的 `editor.occurrencesHighlight` 这个设置项来帮助阅读，本设置项用于保存该设置项在被覆写前的值，以便在覆写停止时复原。若要防止 cwt 覆写该值，请将 `cwt.repetitionDetection.override.editorOccurrencesHighlight.enabled` 设置为 `false`。"
 				},
@@ -80,9 +99,20 @@
 					"markdownDescription": "**是否允许覆写 editor.occurrencesHighlight 值**：cwt 在启用重复检测时需要覆写 Visual Studio Code 的 `editor.occurrencesHighlight` 这个设置项来帮助阅读。如果你不希望 cwt 这么做，请设置该值为 `false`，并手动调整 `editor.occurrencesHighlight` 的值。"
 				},
 				"cwt.repetitionDetection.override.editorSemanticHighlightingEnabled.originalValue": {
-					"type": [ "null", "boolean" ],
-					"enum": [ true, false, null ],
-					"enumDescriptions": [ "", "", "这是默认选项，用来告诉 cwt 需要进行初始化。设置为本项后 cwt 会读取当前值，并覆盖本选项。" ],
+					"type": [
+						"null",
+						"boolean"
+					],
+					"enum": [
+						true,
+						false,
+						null
+					],
+					"enumDescriptions": [
+						"",
+						"",
+						"这是默认选项，用来告诉 cwt 需要进行初始化。设置为本项后 cwt 会读取当前值，并覆盖本选项。"
+					],
 					"default": null,
 					"markdownDescription": "**原始 editor.semanticHighlighting.enabled 值**：因为 cwt 在启用重复检测时需要覆写 Visual Studio Code 的 `editor.semanticHighlighting.enabled` 这个设置项来帮助阅读，本设置项用于保存该设置项在被覆写前的值，以便在覆写停止时复原。若要防止 cwt 覆写该值，请将 `cwt.repetitionDetection.override.editorSemanticHighlightingEnabled.enabled` 设置为 `false`。"
 				},
@@ -92,9 +122,20 @@
 					"markdownDescription": "**是否允许覆写 editor.semanticHighlighting.enabled 值**：cwt 在启用重复检测时需要覆写 Visual Studio Code 的 `editor.semanticHighlighting.enabled` 这个设置项来帮助阅读。如果你不希望 cwt 这么做，请设置该值为 `false`，并手动调整 `editor.semanticHighlighting.enabled` 的值。"
 				},
 				"cwt.repetitionDetection.override.editorSelectionHighlight.originalValue": {
-					"type": [ "null", "boolean" ],
-					"enum": [ true, false, null ],
-					"enumDescriptions": [ "", "", "这是默认选项，用来告诉 cwt 需要进行初始化。设置为本项后 cwt 会读取当前值，并覆盖本选项。" ],
+					"type": [
+						"null",
+						"boolean"
+					],
+					"enum": [
+						true,
+						false,
+						null
+					],
+					"enumDescriptions": [
+						"",
+						"",
+						"这是默认选项，用来告诉 cwt 需要进行初始化。设置为本项后 cwt 会读取当前值，并覆盖本选项。"
+					],
 					"default": null,
 					"markdownDescription": "**原始 editor.selectionHighlight 值**：因为 cwt 在启用重复检测时需要覆写 Visual Studio Code 的 `editor.selectionHighlight` 这个设置项来帮助阅读，本设置项用于保存该设置项在被覆写前的值，以便在覆写停止时复原。若要防止 cwt 覆写该值，请将 `cwt.repetitionDetection.override.editorSelectionHighlight.enabled` 设置为 `false`。"
 				},
