@@ -1,0 +1,121 @@
+{
+	"name": "cwt",
+	"displayName": "cwt",
+	"description": "",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.43.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "cwt.startRepetitionDetection",
+				"title": "CWT: Start Repetition Detection in this Document"
+			},
+			{
+				"command": "cwt.stopRepetitionDetection",
+				"title": "CWT: Stop Repetition Detection in this Document"
+			},
+			{
+				"command": "cwt.toggleRepetitionDetection",
+				"title": "CWT: Toggle Repetition Detection in this Document"
+			},
+			{
+				"command": "cwt.disableConfigOverrides",
+				"title": "CWT: Restore and Disable Configuration Overrides"
+			},
+			{
+				"command": "cwt.enableConfigOverrides",
+				"title": "CWT: Enable Configuration Overrides"
+			}
+		],
+		"configuration": {
+			"title": "CWT",
+			"properties": {
+				"cwt.repetitionDetection.closeRepetitionLineDifference": {
+					"type": "integer",
+					"exclusiveMinimum": -1,
+					"default": 4,
+					"markdownDescription": "**判定为近距离重复的最短行数距离**：发生重复时，若重复位置和当前位置相差的行数在本设定项以内，则判定为近距离重复。近距离重复会用红色标出。"
+				},
+				"cwt.repetitionDetection.keepLastCloseRepetition": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "**是否保持上一次近距离重复可见**：若当前位置不存在近距离重复，是否保持上一个发生的近距离重复的高亮。"
+				},
+				"cwt.repetitionDetection.ignoreList": {
+					"type": "array",
+					"default": [ "了", "的", "地", "得", "是", "和", "与" ],
+					"items": {
+						"type": "string"
+					},
+					"markdownDescription": "**忽略词语列表**：不会被判定为重复的词语，用半角逗号分隔。"
+				},
+				"cwt.repetitionDetection.override.aNotice": {
+					"type": "null",
+					"markdownDescription": "cwt 在做重复检测时，会高亮一些词语。这个高亮和 Visual Studio Code 的会叠在一起导致看不清楚。因此 cwt 会在进入启用重复检测的文档时禁用 Visual Studio Code 的高亮，并在离开时恢复初始值。接下来的这些 `cwt.repetitionDetection.override.*` 的配置项都是控制这个行为的。如果你不希望 cwd 修改你的配置文件，你可以使用命令 `CWT: Restore and Disable Configuration Overrides`。该命令会自动调整相应的配置项并复原你的原始设置。"
+				},
+				"cwt.repetitionDetection.override.editorOccurrencesHighlight.originalValue": {
+					"type": [ "null", "boolean" ],
+					"enum": [ true, false, null ],
+					"enumDescriptions": [ "", "", "这是默认选项，用来告诉 cwt 需要进行初始化。设置为本项后 cwt 会读取当前值，并覆盖本选项。" ],
+					"default": null,
+					"markdownDescription": "**原始 editor.occurrencesHighlight 值**：因为 cwt 在启用重复检测时需要覆写 Visual Studio Code 的 `editor.occurrencesHighlight` 这个设置项来帮助阅读，本设置项用于保存该设置项在被覆写前的值，以便在覆写停止时复原。若要防止 cwt 覆写该值，请将 `cwt.repetitionDetection.override.editorOccurrencesHighlight.enabled` 设置为 `false`。"
+				},
+				"cwt.repetitionDetection.override.editorOccurrencesHighlight.enabled": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "**是否允许覆写 editor.occurrencesHighlight 值**：cwt 在启用重复检测时需要覆写 Visual Studio Code 的 `editor.occurrencesHighlight` 这个设置项来帮助阅读。如果你不希望 cwt 这么做，请设置该值为 `false`，并手动调整 `editor.occurrencesHighlight` 的值。"
+				},
+				"cwt.repetitionDetection.override.editorSemanticHighlightingEnabled.originalValue": {
+					"type": [ "null", "boolean" ],
+					"enum": [ true, false, null ],
+					"enumDescriptions": [ "", "", "这是默认选项，用来告诉 cwt 需要进行初始化。设置为本项后 cwt 会读取当前值，并覆盖本选项。" ],
+					"default": null,
+					"markdownDescription": "**原始 editor.semanticHighlighting.enabled 值**：因为 cwt 在启用重复检测时需要覆写 Visual Studio Code 的 `editor.semanticHighlighting.enabled` 这个设置项来帮助阅读，本设置项用于保存该设置项在被覆写前的值，以便在覆写停止时复原。若要防止 cwt 覆写该值，请将 `cwt.repetitionDetection.override.editorSemanticHighlightingEnabled.enabled` 设置为 `false`。"
+				},
+				"cwt.repetitionDetection.override.editorSemanticHighlightingEnabled.enabled": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "**是否允许覆写 editor.semanticHighlighting.enabled 值**：cwt 在启用重复检测时需要覆写 Visual Studio Code 的 `editor.semanticHighlighting.enabled` 这个设置项来帮助阅读。如果你不希望 cwt 这么做，请设置该值为 `false`，并手动调整 `editor.semanticHighlighting.enabled` 的值。"
+				},
+				"cwt.repetitionDetection.override.editorSelectionHighlight.originalValue": {
+					"type": [ "null", "boolean" ],
+					"enum": [ true, false, null ],
+					"enumDescriptions": [ "", "", "这是默认选项，用来告诉 cwt 需要进行初始化。设置为本项后 cwt 会读取当前值，并覆盖本选项。" ],
+					"default": null,
+					"markdownDescription": "**原始 editor.selectionHighlight 值**：因为 cwt 在启用重复检测时需要覆写 Visual Studio Code 的 `editor.selectionHighlight` 这个设置项来帮助阅读，本设置项用于保存该设置项在被覆写前的值，以便在覆写停止时复原。若要防止 cwt 覆写该值，请将 `cwt.repetitionDetection.override.editorSelectionHighlight.enabled` 设置为 `false`。"
+				},
+				"cwt.repetitionDetection.override.editorSelectionHighlight.enabled": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "**是否允许覆写 editor.selectionHighlight 值**：cwt 在启用重复检测时需要覆写 Visual Studio Code 的 `editor.selectionHighlight` 这个设置项来帮助阅读。如果你不希望 cwt 这么做，请设置该值为 `false`，并手动调整 `editor.selectionHighlight` 的值。"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^12.11.7",
+		"@types/vscode": "^1.43.0",
+		"@typescript-eslint/eslint-plugin": "^2.18.0",
+		"@typescript-eslint/parser": "^2.18.0",
+		"eslint": "^6.8.0",
+		"typescript": "^3.7.5"
+	},
+	"dependencies": {
+		"segment": "^0.1.3"
+	}
+}
