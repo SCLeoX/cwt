@@ -6,6 +6,9 @@ cwt 是一个简单的 VSCode 中文写作重复检查插件。它会高亮所�
 ![](./record.gif)
 
 ## FAQ
+### 如何安装？
+在 VSCode 内搜索并安装 cwt 即可。
+
 ### 为什么不会工作？
 请打开命令面板（Windows 下默认 Ctrl + Shift + P），输入“CWT: Start Repetition Detection in this Document”并按下回车来启用当前文档的重复检查。
 
