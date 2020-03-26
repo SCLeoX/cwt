@@ -57,19 +57,16 @@
 				},
 				"cwt.repetitionDetection.ignoreList": {
 					"type": "array",
-					"default": [
-						"了",
-						"的",
-						"地",
-						"得",
-						"是",
-						"和",
-						"与"
-					],
+					"default": [],
 					"items": {
 						"type": "string"
 					},
 					"markdownDescription": "**忽略词语列表**：不会被判定为重复的词语，用半角逗号分隔。"
+				},
+				"cwt.repetitionDetection.ignoreOneCharSegments": {
+					"type": "boolean",
+					"default": true,
+					"markdownDescription": "**是否忽略一个字的词语**：控制重复检查时是否忽略一个字的词语，例如“我”、“把”、“要”、“在”等。"
 				},
 				"cwt.repetitionDetection.override.aNotice": {
 					"type": "null",

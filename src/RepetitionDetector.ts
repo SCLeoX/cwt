@@ -257,6 +257,10 @@ export function repetitionDetection(context: ExtensionContext) {
       }
       /** Segment under target */
       const targetSegment = targetLine.substring(targetSegmentColumnRange[0], targetSegmentColumnRange[1]);
+      if (targetSegment.length === 1 && config.get<boolean>('ignoreOneCharSegments')!) {
+        this.resetDecorations();
+        return;
+      }
       if (config.get<Array<string>>('ignoreList')!.includes(targetSegment)) {
         this.resetDecorations();
         return;
